@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HeaderSimple from './Layouts/Header';
+import { Container } from '@mantine/core';
+import { RouterProvider } from "react-router-dom";
+import { router } from "./AppRoutes";
+
+const LINKS = [
+  {
+    "link": "/todo",
+    "label": "TODO"
+  },
+  {
+    "link": "/in-progress",
+    "label": "IN PROGRESS"
+  },
+  {
+    "link": "/complete",
+    "label": "COMPLETE"
+  }
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <HeaderSimple links={LINKS}/>
+        <Container>
+          <RouterProvider
+            router={router}
+          />
+        </Container>
     </div>
   );
 }
