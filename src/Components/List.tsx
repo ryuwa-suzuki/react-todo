@@ -35,6 +35,7 @@ const List: React.FC<ListProps> = ({onDelete}) => {
       default:
         badgeColor = 'cyan';
     }
+
     return(
       <Grid.Col key={index} span={12} xs={4}>
         <Card shadow="sm" padding="xl" component="a">

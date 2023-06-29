@@ -57,6 +57,7 @@ export default function Home () {
       value={title}
       onChange={handleTitleChange}
       />
+
       <Textarea
         placeholder="content"
         radius="md"
@@ -64,12 +65,14 @@ export default function Home () {
         value={content}
         onChange={handleContentChange}
       />
+
       <Flex style={{ fontSize: '100px' }} gap="md" justify="flex-end" align="center" wrap="wrap">
         <Button
           onClick={saveTodo}>
           Create
         </Button>
       </Flex>
+
       <TodoListContext.Provider value={todoList}>
         <List onDelete={deleteTodo}/>
       </TodoListContext.Provider>

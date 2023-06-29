@@ -78,7 +78,7 @@ export default function HeaderSimple({ links }: HeaderSimpleProps) {
 
 
           <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" aria-label="Open navigation"/>
-          <Group spacing={5} className={classes.links}>
+          <Group spacing={10} className={classes.links}>
             {items}
           </Group>
 
