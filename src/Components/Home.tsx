@@ -1,7 +1,6 @@
-import { Input, Flex, Button } from '@mantine/core';
-import React, { useState} from "react";
-import { useLocation } from "react-router-dom";
-import { TodoListContext, List } from "./List";
+import { Input, Flex, Button, Textarea } from '@mantine/core';
+import React, { useState } from "react";
+import List, { TodoListContext} from "./List";
 
 export default function Home () {
 
@@ -19,15 +18,16 @@ export default function Home () {
     setTitle(event.target.value);
   };
 
-  const handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
   };
 
-  const type = useLocation().pathname;
-
 
   const saveTodo = () => {
+    const type = window.location.pathname.replace('/', '');
+
     if (!title || !content) return;
+
     const list = [...todoList, {
         title: title,
         content: content,
@@ -40,6 +40,13 @@ export default function Home () {
     setTodoList(list);
   }
 
+  const deleteTodo = (index: number) => {
+    const list = [...todoList];
+    list.splice(index, 1);
+
+    setTodoList(list);
+  };
+
   return (
     <Flex gap="xl" justify="center" align="left" direction="column">
       <Input
@@ -50,8 +57,7 @@ export default function Home () {
       value={title}
       onChange={handleTitleChange}
       />
-      <Input
-        type='text'
+      <Textarea
         placeholder="content"
         radius="md"
         size="md"
@@ -65,7 +71,7 @@ export default function Home () {
         </Button>
       </Flex>
       <TodoListContext.Provider value={todoList}>
-        <List />
+        <List onDelete={deleteTodo}/>
       </TodoListContext.Provider>
     </Flex>
   );
